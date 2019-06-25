@@ -1,0 +1,70 @@
+﻿@using System.Activities.Statements
+@using OpenWeather.Models
+@using OpenWeather.Controllers
+@using DevExtreme.AspNet.Data;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<form class="form-horizontal" method="post" action="/Home/Index">
+    <legend align="center">Open Weather</legend>
+    
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-8" align="center">
+                    <input class="col-md-4 form-control" id="cityName" name="cityName" type="text" required="" placeholder="Enter the city name" />
+                    <button type="submit" class="btn btn-primary col-md-4">Submit</button>
+                </div>
+                <div class="col-md-3">
+                </div>
+            </div>
+        </div>
+    <br>
+</form>
+@if (ViewBag.Forecast != null)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Weather in @ViewBag.Forecast.City.Name , @ViewBag.Forecast.City.Country</h4>
+                <h3>@ViewBag.Forecast.Items[0].Main.Temp C</h3>
+                <h3> @ViewBag.Forecast.Items[0].Weather[0].Description</h3>
+
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td>Wind</td>
+                            <td>
+                                Gentle Breeze @ViewBag.Forecast.Items[0].Wind.Speed <br>
+                                Southwest @ViewBag.Forecast.Items[0].Wind.Deg
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Cloudiness</td> 
+                            <td>@ViewBag.Forecast.Items[0].Weather[0].Description</td>
+                        </tr>
+                        <tr>
+                            <td>Pressure</td>
+                            <td>@ViewBag.Forecast.Items[0].Main.Pressure</td>
+                        </tr>
+                        <tr>
+                            <td>Humidity</td>
+                            <td>@ViewBag.Forecast.Items[0].Main.Humidity</td>
+                        </tr>
+                        <tr>
+                            <td>Geo coords</td>
+                            <td>@ViewBag.Forecast.City.Coord.Lat @ViewBag.Forecast.City.Coord.Lon</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-7">
+                @RenderPage("~/Views/Home/ForecastChartView.cshtml")
+            </div>
+        </div>
+    </div>
+}
+

@@ -1,0 +1,35 @@
+﻿<head>
+    <meta name="viewport" content="width=100px" />
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <title>Line Chart</title>
+</head>
+<body>
+<div id="chartContainer" style="height: 400px; width: 100%"></div>
+ 
+<script type="text/javascript">
+                    window.onload = function () {
+                        var chart = new CanvasJS.Chart("chartContainer", {
+                            theme: "light2",
+                            zoomEnabled: true,
+                            animationEnabled: true,
+                            title:{
+                                text: "Weather and forecasts in @ViewBag.Forecast.City.Name , @ViewBag.Forecast.City.Country"
+                            },
+                            axisY: {
+                                title: "Temperature (in °C)",
+                                suffix: " °C"
+                            },
+                            data: [
+                                {
+                                    type: "spline",
+
+                                    
+                                    dataPoints: @Html.Raw(ViewBag.DataPoints)
+                                }
+                            ]
+                        });
+                        chart.render();
+                    };
+</script>
+ 
+</body>

@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "WeatherView";
+}
+@if(Model != null && Model.Any())
+{ 
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Weather in @Model.Name</h3>
+                <h2>@Model.Main.Temp</h2>
+                <h3> @Model.Weather[0].Description</h3>
+
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <td>Wind</td>
+                        <td>
+                            Gentle Breeze @Model.Wind.Speed
+                            Southwest @Model.Wind.Deg
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Cloudiness</td>
+                        <td>@Model.Weather[0].Description</td>
+                    </tr>
+                    <tr>
+                        <td>Pressure</td>
+                        <td>@Model.Main.Pressure</td>
+                    </tr>
+                    <tr>
+                        <td>Humidity</td>
+                        <td>@Model.Main.Humidity</td>
+                    </tr>
+                    <tr>
+                        <td>Sunrise</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Sunset</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Geo coords</td>
+                        <td>@Model.Coord.Lat @Model.Coord.Lon</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-7">
+                <h2></h2>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-primary" role="alert">
+       City not found
+    </div>
+}
